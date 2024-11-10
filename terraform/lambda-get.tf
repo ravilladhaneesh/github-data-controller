@@ -7,12 +7,12 @@ data "archive_file" "get-lambda-source" {
 
 
 resource "aws_lambda_function" "lambda-get" {
-  filename = data.archive_file.get-lambda-source.output_path
-  function_name     = "github-repo-get-func"
-  role = aws_iam_role.lambda-get-role.arn
-  handler  = "github-get.lambda_handler"
-  runtime  = "python3.12"
-  timeout  = 10
+  filename      = data.archive_file.get-lambda-source.output_path
+  function_name = "github-repo-get-func"
+  role          = aws_iam_role.lambda-get-role.arn
+  handler       = "github-get.lambda_handler"
+  runtime       = "python3.12"
+  timeout       = 10
 
   environment {
     variables = {

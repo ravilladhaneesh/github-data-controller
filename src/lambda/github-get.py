@@ -22,7 +22,7 @@ def lambda_handler(event, context):
         #print("----",table)
         
         response = table.query(
-            KeyConditionExpression=boto3.dynamodb.conditions.Key('username').eq()
+            KeyConditionExpression=boto3.dynamodb.conditions.Key('username').eq(username)
         )
         print("----",response)
         item = response['Items']
