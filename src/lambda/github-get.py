@@ -7,44 +7,40 @@ from decimal import Decimal
 
 def lambda_handler(event, context):
 
-    if event["username"]:
-        username = event["username"]
+    valid_request = True if "username" in event else False
 
-    else:
-        username = "ravilladhaneesh"
+    if not valid_request:
+        return {
+            'statusCode': 500,
+            'body': json.dumps({"message": "Invalid request. Missing username"})
+        }
 
     try:
         
-
         dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
-        #print("----",dynamodb)
         table = dynamodb.Table("github-repo-data")
-        #print("----",table)
         
         response = table.query(
             KeyConditionExpression=boto3.dynamodb.conditions.Key('username').eq(username)
         )
-        print("----",response)
-        item = response['Items']
-        #print(item)
+        print("DDB response ----",response)
     
         body = {}
-        body['Items'] = item
-        #print(body)
-        #print(json.dump(body, default=decimal_to_float))
-        return {
+        body['Items'] = response['Items']
+        
+        response = {
             'statusCode': 200,
             'body': json.dumps(body, default=decimal_to_float)
         }
     except Exception as err:
-        print(f'github-viewer Cloudfront invalidation exception {err}')
-        return {
+        print(f'Error occured during dynamodb get data username: {username}, error: {err}')
+        response = {
             "statusCode": 500,
             "body": json.dumps({
                 "message": f"Error {err}"
             })
         }
-
+    return response
 
 def decimal_to_float(obj):
     """Convert Decimal objects to float for JSON serialization."""
