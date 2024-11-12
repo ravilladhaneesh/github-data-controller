@@ -13,6 +13,10 @@ resource "aws_api_gateway_method" "get-api" {
   http_method   = "GET"
   resource_id   = aws_api_gateway_resource.test-api-res-getdata.id
   rest_api_id   = aws_api_gateway_rest_api.test-api-tf.id
+
+  request_parameters = {
+    "method.request.querystring.username" = true
+  }
 }
 
 resource "aws_api_gateway_integration" "getdata-intergration" {
@@ -38,6 +42,10 @@ resource "aws_api_gateway_method_response" "getdata-response_200" {
   resource_id = aws_api_gateway_resource.test-api-res-getdata.id
   http_method = aws_api_gateway_method.get-api.http_method
   status_code = "200"
+
+  response_models = {
+    "application/json" = "Empty"
+  }
 }
 
 resource "aws_api_gateway_integration_response" "getdata-response-integration" {
@@ -52,4 +60,6 @@ resource "aws_api_gateway_integration_response" "getdata-response-integration" {
     
     EOF
   }
+
+  depends_on = [ aws_api_gateway_integration.getdata-intergration]
 }
