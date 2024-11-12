@@ -50,8 +50,8 @@ resource "aws_iam_role_policy_attachment" "cloudwatch-policy-attachment" {
   policy_arn = aws_iam_policy.cloudwatch-policy.arn
 }
 
-# Lambda
-resource "aws_lambda_permission" "apigw_lambda" {
+// api gw permission for getData lambda
+resource "aws_lambda_permission" "apigw_lambda_getData" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.lambda-get.function_name
@@ -59,4 +59,14 @@ resource "aws_lambda_permission" "apigw_lambda" {
 
   # More: http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-control-access-using-iam-policies-to-invoke-api.html
   source_arn = "arn:aws:execute-api:${var.region}:${var.accountId}:${aws_api_gateway_rest_api.test-api-tf.id}/*/${aws_api_gateway_method.get-api.http_method}${aws_api_gateway_resource.test-api-res-getdata.path}"
+}
+
+// api gw permission for getUsers lambda
+resource "aws_lambda_permission" "apigw_lambda_getUsers" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.lambda-getUsers.function_name
+  principal     = "apigateway.amazonaws.com"
+
+  source_arn = "arn:aws:execute-api:${var.region}:${var.accountId}:${aws_api_gateway_rest_api.test-api-tf.id}/*/${aws_api_gateway_method.getUsers-api-method.http_method}${aws_api_gateway_resource.test-api-res-getUsers.path}"
 }
