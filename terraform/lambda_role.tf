@@ -30,6 +30,15 @@ resource "aws_iam_policy" "cloudwatch-policy" {
                     "s3:GetObject"
                 ],
                 "Resource": "*"
+            },
+            {
+                "Effect": "Allow",
+                "Action": [
+                    "logs:PutLogEvents",
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream"
+                ],
+                "Resource": "*"
             }
         ]
     }
