@@ -58,5 +58,5 @@ resource "aws_api_gateway_integration_response" "getdata-response-integration" {
     EOF
   }
 
-  depends_on = [ aws_api_gateway_integration.getdata-intergration]
+  depends_on = [aws_api_gateway_integration.getdata-intergration]
 }
