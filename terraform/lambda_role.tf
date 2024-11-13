@@ -79,3 +79,13 @@ resource "aws_lambda_permission" "apigw_lambda_getUsers" {
 
   source_arn = "arn:aws:execute-api:${var.region}:${var.accountId}:${aws_api_gateway_rest_api.test-api-tf.id}/*/${aws_api_gateway_method.getUsers-api-method.http_method}${aws_api_gateway_resource.test-api-res-getUsers.path}"
 }
+
+// api gw permission for putData lambda
+resource "aws_lambda_permission" "apigw_lambda_putData" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.lambda_github_put.function_name
+  principal     = "apigateway.amazonaws.com"
+
+  source_arn = "arn:aws:execute-api:${var.region}:${var.accountId}:${aws_api_gateway_rest_api.test-api-tf.id}/*/${aws_api_gateway_method.put-data-method.http_method}${aws_api_gateway_resource.api-put-res.path}"
+}
