@@ -5,17 +5,19 @@ from decimal import Decimal
 
 def lambda_handler(event, context):
     
-    is_valid = validate_event(event["body"])
+    is_valid = validate_event(event)
 
     if not is_valid:
         return {
             'statusCode': 400,
             'message': "Invalid request"
         }
-    decimal_languages = languages_to_decimal_type(event["body"]["languages"])
-    username = event["body"]['username']
-    reponame = event["body"]['reponame']
+    
     try:
+        decimal_languages = languages_to_decimal_type(event["body"]["languages"])
+        username = event["body"]['username']
+        reponame = event["body"]['reponame']
+
         dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
         table = dynamodb.Table('github-repo-data')
 
@@ -29,36 +31,38 @@ def lambda_handler(event, context):
                 "is_private_repo": event["body"]["is_private"]
             }
         )
-        # print("dec languages:", decimal_languages)
-        # print(response)
+        
         if response['ResponseMetadata']['HTTPStatusCode'] == 200:
 
             return {
                 "statusCode": 200,
-                "body": f"Successfully put Data for username: {username}, repo: {reponame}"
+                "body": f"Successfully put Data for username: {username}, repo: {reponame}."
             }
         else:
-            raise Exception(f"Unable to put data for username: {username}, repo: {reponame}")
+            raise Exception(f"Unable to put data for username: {username}, repo: {reponame}.")
 
 
     except Exception as e:
         print("Exception: ", e)
-        return {
+        message = f"Exception {e}"
+        
+    return {
             "statusCode": 500,
-            "body": json.dumps({
-                "message": f"Error {str(e)}"
-            })
+            "message": message
         }
     
 
-def validate_event(event_body):
+def validate_event(event):
     
-    if "username" not in event_body:
-        return False
-    if "reponame" not in event_body:
+    if "body" not in event:
         return False
     
+    required_fields = ["username", "reponame", "url", "languages", "branch", "is_private"]
+    for field in required_fields:
+        if field not in event["body"]:
+            return False
     return True
+
 
 def languages_to_decimal_type(languages):
     dec_languages = {}
