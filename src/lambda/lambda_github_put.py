@@ -63,5 +63,5 @@ def validate_event(event_body):
 def languages_to_decimal_type(languages):
     dec_languages = {}
     for lang in languages:
-        dec_languages[lang] = Decimal(languages[lang])
+        dec_languages[lang] = Decimal(str(languages[lang]))
     return dec_languages
