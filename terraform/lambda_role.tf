@@ -19,7 +19,7 @@ resource "aws_iam_role" "lambda-get-role" {
 
 
 resource "aws_iam_policy" "cloudwatch-policy" {
-  name   = "tf-lamda-s3-trigger"
+  name   = "tf-lamda-cloudwatch-policy"
   policy = <<EOF
     {
         "Version": "2012-10-17",
