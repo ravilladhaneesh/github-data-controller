@@ -4,12 +4,6 @@ on:
   push:
     branches: 
       - '**'
-      #- master # Run the workflow when code is pushed to the main branch
-      #- terraform
-  pull_request:
-    branches: 
-      - master
-      - terraform
       
   # workflow_dispatch:
 
@@ -46,6 +40,9 @@ jobs:
         env:
           TF_VAR_region: ${{ secrets.AWS_REGION }}
           TF_VAR_accountId: ${{ secrets.ACCOUNT_ID }}
+          TF_VAR_github_assume_role_arn: ${{ secrets.STS_GITHUB_ASSUME_ROLE_ARN }}
+          TF_VAR_local_user_arn: ${{ secrets.LOCAL_USER_ARN }}
+          TF_VAR_role_arn: ${{secrets.ROLE_ARN }}
         run: |
           terraform -chdir=terraform init
           terraform -chdir=terraform/ plan
@@ -77,6 +74,9 @@ jobs:
         env:
           TF_VAR_region: ${{ secrets.AWS_REGION }}
           TF_VAR_accountId: ${{ secrets.ACCOUNT_ID }}
+          TF_VAR_github_assume_role_arn: ${{ secrets.STS_GITHUB_ASSUME_ROLE_ARN }}
+          TF_VAR_local_user_arn: ${{ secrets.LOCAL_USER_ARN }}
+          TF_VAR_role_arn: ${{secrets.ROLE_ARN }}
         run: |
           terraform -chdir=terraform/ init
           terraform -chdir=terraform/ apply -auto-approve
@@ -109,6 +109,9 @@ jobs:
         env:
           TF_VAR_region: ${{ secrets.AWS_REGION }}
           TF_VAR_accountId: ${{ secrets.ACCOUNT_ID }}
+          TF_VAR_github_assume_role_arn: ${{ secrets.STS_GITHUB_ASSUME_ROLE_ARN }}
+          TF_VAR_local_user_arn: ${{ secrets.LOCAL_USER_ARN }}
+          TF_VAR_role_arn: ${{secrets.ROLE_ARN }}
         run: |
           terraform -chdir=terraform/ init
           terraform -chdir=terraform/ destroy -auto-approve
