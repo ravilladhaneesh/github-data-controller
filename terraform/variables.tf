@@ -5,3 +5,18 @@ variable "accountId" {
 variable "region" {
   type = string
 }
+
+variable "local_user_arn" {
+  type        = string
+  description = "A local testing user arn"
+}
+
+variable "github_assume_role_arn" {
+  type        = string
+  description = "Arn of github assume role after sts assume"
+}
+
+variable "role_arn" {
+  type        = string
+  description = "Arn of github assume role"
+}
