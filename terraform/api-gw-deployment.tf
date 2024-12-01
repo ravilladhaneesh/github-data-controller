@@ -63,6 +63,12 @@ resource "aws_api_gateway_rest_api_policy" "api-gw-test-resource-policy" {
         ]
       },
       "Action": "execute-api:Invoke",
+      "Resource": "${aws_api_gateway_rest_api.test-api-tf.execution_arn}/test/POST/*"
+    },
+    {
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "execute-api:Invoke",
       "Resource": "${aws_api_gateway_rest_api.test-api-tf.execution_arn}/*"
     }
   ]
