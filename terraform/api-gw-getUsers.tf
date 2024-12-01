@@ -28,9 +28,16 @@ resource "aws_api_gateway_method_response" "getUsers-response_200" {
   http_method = aws_api_gateway_method.getUsers-api-method.http_method
   status_code = "200"
 
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Methods"     = true,
+    "method.response.header.Access-Control-Allow-Origin"      = true,
+  }
+
   response_models = {
     "application/json" = "Empty"
   }
+
+
 }
 
 resource "aws_api_gateway_integration_response" "getUsers-response-integration" {
@@ -39,7 +46,11 @@ resource "aws_api_gateway_integration_response" "getUsers-response-integration" 
   http_method = aws_api_gateway_method.getUsers-api-method.http_method
   status_code = aws_api_gateway_method_response.getUsers-response_200.status_code
 
-  # Transforms the backend JSON response to XML
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Methods"     = "'GET'",
+    "method.response.header.Access-Control-Allow-Origin"      = "'*'",
+  }
+
   response_templates = {
     "application/json" = <<EOF
     

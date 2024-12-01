@@ -40,6 +40,11 @@ resource "aws_api_gateway_method_response" "getdata-response_200" {
   http_method = aws_api_gateway_method.get-api.http_method
   status_code = "200"
 
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Methods"     = true,
+    "method.response.header.Access-Control-Allow-Origin"      = true,
+  }
+
   response_models = {
     "application/json" = "Empty"
   }
@@ -50,8 +55,12 @@ resource "aws_api_gateway_integration_response" "getdata-response-integration" {
   resource_id = aws_api_gateway_resource.test-api-res-getdata.id
   http_method = aws_api_gateway_method.get-api.http_method
   status_code = aws_api_gateway_method_response.getdata-response_200.status_code
+  
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Methods"     = "'GET'",
+    "method.response.header.Access-Control-Allow-Origin"      = "'*'",
+  }
 
-  # Transforms the backend JSON response to XML
   response_templates = {
     "application/json" = <<EOF
     
