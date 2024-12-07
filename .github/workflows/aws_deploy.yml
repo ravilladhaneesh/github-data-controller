@@ -4,11 +4,9 @@ on:
   push:
     branches: 
       - '**'
-      
-  # workflow_dispatch:
 
 env:
-  AWS_REGION : "ap-south-1" #Change to reflect your Region
+  AWS_REGION : "ap-south-1" 
 
 permissions:
       id-token: write   # This is required for requesting the JWT
@@ -40,9 +38,8 @@ jobs:
         env:
           TF_VAR_region: ${{ secrets.AWS_REGION }}
           TF_VAR_accountId: ${{ secrets.ACCOUNT_ID }}
-          TF_VAR_github_assume_role_arn: ${{ secrets.STS_GITHUB_ASSUME_ROLE_ARN }}
           TF_VAR_local_user_arn: ${{ secrets.LOCAL_USER_ARN }}
-          TF_VAR_role_arn: ${{secrets.ROLE_ARN }}
+          TF_VAR_put_data_role_arn: ${{secrets.PUT_DATA_ROLE_ARN }}
         run: |
           terraform -chdir=terraform init
           terraform -chdir=terraform/ plan
@@ -74,9 +71,8 @@ jobs:
         env:
           TF_VAR_region: ${{ secrets.AWS_REGION }}
           TF_VAR_accountId: ${{ secrets.ACCOUNT_ID }}
-          TF_VAR_github_assume_role_arn: ${{ secrets.STS_GITHUB_ASSUME_ROLE_ARN }}
           TF_VAR_local_user_arn: ${{ secrets.LOCAL_USER_ARN }}
-          TF_VAR_role_arn: ${{secrets.ROLE_ARN }}
+          TF_VAR_put_data_role_arn: ${{secrets.PUT_DATA_ROLE_ARN }}
         run: |
           terraform -chdir=terraform/ init
           terraform -chdir=terraform/ apply -auto-approve
@@ -109,9 +105,8 @@ jobs:
         env:
           TF_VAR_region: ${{ secrets.AWS_REGION }}
           TF_VAR_accountId: ${{ secrets.ACCOUNT_ID }}
-          TF_VAR_github_assume_role_arn: ${{ secrets.STS_GITHUB_ASSUME_ROLE_ARN }}
           TF_VAR_local_user_arn: ${{ secrets.LOCAL_USER_ARN }}
-          TF_VAR_role_arn: ${{secrets.ROLE_ARN }}
+          TF_VAR_put_data_role_arn: ${{secrets.PUT_DATA_ROLE_ARN }}
         run: |
           terraform -chdir=terraform/ init
           terraform -chdir=terraform/ destroy -auto-approve
