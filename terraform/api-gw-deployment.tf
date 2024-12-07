@@ -57,19 +57,18 @@ resource "aws_api_gateway_rest_api_policy" "api-gw-test-resource-policy" {
       "Effect": "Allow",
       "Principal": {
         "AWS": [
-          "${var.github_assume_role_arn}",
           "${var.local_user_arn}",
           "${var.role_arn}"
         ]
       },
       "Action": "execute-api:Invoke",
-      "Resource": "${aws_api_gateway_rest_api.test-api-tf.execution_arn}/test/POST/*"
+      "Resource": "${aws_api_gateway_rest_api.test-api-tf.execution_arn}/test/PUT/*"
     },
     {
       "Effect": "Allow",
       "Principal": "*",
       "Action": "execute-api:Invoke",
-      "Resource": "${aws_api_gateway_rest_api.test-api-tf.execution_arn}/*"
+      "Resource": "${aws_api_gateway_rest_api.test-api-tf.execution_arn}/test/GET/*"
     }
   ]
 }
