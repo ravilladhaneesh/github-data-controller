@@ -58,7 +58,7 @@ resource "aws_api_gateway_rest_api_policy" "api-gw-test-resource-policy" {
       "Principal": {
         "AWS": [
           "${var.local_user_arn}",
-          "${var.role_arn}"
+          "${var.put_data_role_arn}"
         ]
       },
       "Action": "execute-api:Invoke",
