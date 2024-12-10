@@ -11,12 +11,8 @@ variable "local_user_arn" {
   description = "A local testing user arn"
 }
 
-variable "github_assume_role_arn" {
-  type        = string
-  description = "Arn of github assume role for post data"
-}
 
-variable "role_arn" {
+variable "put_data_role_arn" {
   type        = string
-  description = "Arn of github assume role"
+  description = "Arn of github put data role"
 }
