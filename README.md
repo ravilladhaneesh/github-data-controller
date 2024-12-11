@@ -29,19 +29,20 @@ github-data-controller is one of the 3 github-repo-viewer project that stores th
 
 1. Create an environment in the repository and Add secrets to the environment.
 
-        Steps to create an environment:
+        Steps to create an environment and secrets:
             1. Go to `settings` in the repository.
             2. In the `General` section Click on `Environments` option.
-            3. Click on `New Environment` and provide a name of the `environment` and click on `Configure environment`.
+            3. Click on `New Environment` and provide a name of the `environment` and click on `Configure environment`.This will create a new environment and opens your newly created environment.
             4. In the `environment secrets` section click on 'Add environment secrets' and add the below variables.
                 1. Name  : AWS_PUT_DATA_ROLE
                    value : arn:aws:iam::011528266310:role/github-put-data-role
                 2. Name  : AWS_REGION
                    value : ap-south-1 
+  
+        The AWS role provided in the above secrets has a single permission to put data to an AWS API Gateway.So the role doesn't cause any security threat. To put data to AWS your github userId/username has to be added in the role policy document to allow your github userID to assume the above provided role. Please contact me @ ravilladhaneesh@gmail.com to add your github userId to the role.
 
-
-1. Create a .github/workflows directory in your root repository to trigger a workflow on Github Actions.
-2. Add the file in this [link](https://github.com/ravilladhaneesh/workflow-test/blob/main/.github/workflows/python-test.yml) to the .github/workflow folder created in the above step to run a job that puts data to AWS
+2. Create a .github/workflows directory in your root repository to trigger a workflow on Github Actions.
+3. Add the file in this [link](https://github.com/ravilladhaneesh/workflow-test/blob/main/.github/workflows/python-test.yml) to the .github/workflow folder created in the above step to run a job that puts data to AWS
 
 ### Detailed Description of the job
 
