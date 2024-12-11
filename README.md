@@ -83,8 +83,8 @@ github-data-controller is one of the 3 github-repo-viewer project that stores th
         - name: Configure aws credentials
             uses: aws-actions/configure-aws-credentials@v2
             with:
-            role-to-assume: ${{ secrets.AWS_PUT_DATA_ROLE}}
-            aws-region: ${{ secrets.AWS_REGION }}
+                role-to-assume: ${{ secrets.AWS_PUT_DATA_ROLE}}
+                aws-region: ${{ secrets.AWS_REGION }}
 
 5. In the below Step 4 and Step 5 the job is installing python and setting up the environment variables that are later used by github-data-processor to process the data and put the data in AWS.The last step (Step 6) is where the required dependencies are installed and github-data-processor is ran to put the data to AWS. 
 
@@ -92,16 +92,16 @@ github-data-controller is one of the 3 github-repo-viewer project that stores th
         - name: Set up Python
             uses: actions/setup-python@v4
             with:
-            python-version: '3.x'
+                python-version: '3.x'
 
         # Step 5: Set repository details as environment variable
         - name: Set ENV variable with repository name
             run: |
-            echo "REPO_NAME=${{ github.repository }}" >> $GITHUB_ENV
-            echo "REPO_PATH=${{ github.workspace }}" >> $GITHUB_ENV
-            echo "REPO_URL=https://github.com/${{ github.repository }}" >> $GITHUB_ENV
-            echo "BRANCH=${{ github.ref_name}}" >> $GITHUB_ENV
-            echo "REPO_VISIBILITY=${{ github.event.repository.private }}" >> $GITHUB_ENV
+                echo "REPO_NAME=${{ github.repository }}" >> $GITHUB_ENV
+                echo "REPO_PATH=${{ github.workspace }}" >> $GITHUB_ENV
+                echo "REPO_URL=https://github.com/${{ github.repository }}" >> $GITHUB_ENV
+                echo "BRANCH=${{ github.ref_name}}" >> $GITHUB_ENV
+                echo "REPO_VISIBILITY=${{ github.event.repository.private }}" >> $GITHUB_ENV
 
         # Step 6: Run the github-data-processor project
         - name: Run scraper
