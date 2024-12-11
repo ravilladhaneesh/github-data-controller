@@ -66,7 +66,7 @@ github-data-controller is one of the 3 github-repo-viewer project that stores th
                     id-token: write
                     contents: read
 
-3. The below code snippet describes the executions of the job.In the step 1. the job checkouts the current repository and in step 2. github-data-processor is cloned into the current job execution.
+3. The below code snippet describes the executions of the job.In the step 1. the job checkouts the current repository and in step 2. github-data-processor is cloned into the current job execution environment.
 
 
         steps:
@@ -78,7 +78,7 @@ github-data-controller is one of the 3 github-repo-viewer project that stores th
         - name: Clone github-data-processor repository
             run: git clone https://github.com/ravilladhaneesh/github-data-processor.git
 
-4. This is the step where the autentication for AWS is requested using the 'AWS_PUT_DATA_ROLE'. The AWS_PUT_DATA_ROLE, AWS_REGION variable has to be added to the environment as a secret variable.
+4. This is the step where the autentication for AWS is requested using [Github OpenID Connect](https://docs.github.com/en/actions/security-for-github-actions/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services) with the 'AWS_PUT_DATA_ROLE'. The AWS_PUT_DATA_ROLE, AWS_REGION variable has to be added to the environment as a secret variable.
 
         # Step 3: Configure aws credentials
         - name: Configure aws credentials
