@@ -29,7 +29,7 @@ github-data-controller is one of the 3 github-repo-viewer project that stores th
 
 1. Create an environment in the repository and Add secrets to the environment.
 
-        Steps to create an environment and secrets:
+        Steps to create an environment and add secrets:
             1. Go to `settings` in the repository.
             2. In the `General` section Click on `Environments` option.
             3. Click on `New Environment` and provide a name of the `environment` and click on `Configure environment`.This will create a new environment and opens your newly created environment.
