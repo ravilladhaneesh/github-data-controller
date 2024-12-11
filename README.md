@@ -39,7 +39,8 @@ github-data-controller is one of the 3 github-repo-viewer project that stores th
                 2. Name  : AWS_REGION
                    value : ap-south-1 
   
-        The AWS role provided in the above secrets has a single permission to put data to an AWS API Gateway.So the role doesn't cause any security threat. To put data to AWS your github userId/username has to be added in the role policy document to allow your github userID to assume the above provided role. Please contact me @ ravilladhaneesh@gmail.com to add your github userId to the role.
+
+    The AWS role provided in the above secrets has a single permission to put data to an AWS API Gateway.So the role doesn't cause any security threat. To put data to AWS your github userId/username has to be added in the role policy document to allow your github userID to assume the above provided role. Please contact me @ ravilladhaneesh@gmail.com to add your github userId to the role.
 
 2. Create a .github/workflows directory in your root repository to trigger a workflow on Github Actions.
 3. Add the file in this [link](https://github.com/ravilladhaneesh/workflow-test/blob/main/.github/workflows/python-test.yml) to the .github/workflow folder created in the above step to run a job that puts data to AWS
