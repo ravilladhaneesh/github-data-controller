@@ -56,7 +56,7 @@ github-data-controller is one of the 3 github-repo-viewer project that stores th
             branches:
             - main  # Run the workflow when code is pushed to the main branch
 
-2. The below code snippet has the list of jobs that runs in the workflow.In this script we have a single job 'run-python-script' that executes the [github-data-processor](https://github.com/ravilladhaneesh/github-data-processor) project to put data to AWS.The job is deployed in the 'staging' environment(Update the environment that you have created in the above [Steps to put data to AWS](#steps-to-put-data-to-aws) section).The permissions section in the code snippet are required to request the JWT token to autenticate AWS and read content of the repository.
+2. The below code snippet has the job that runs in the workflow. In this script we have a single job 'run-python-script' that executes the [github-data-processor](https://github.com/ravilladhaneesh/github-data-processor) project to put data to AWS.The job is deployed in the 'staging' environment(Update the environment that you have created in the above [Steps to put data to AWS](#steps-to-put-data-to-aws) section).The permissions section in the code snippet are required to request the JWT token to autenticate AWS and read content of the repository.
 
         jobs:
             run-python-script:
