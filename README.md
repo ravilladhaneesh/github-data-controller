@@ -16,7 +16,7 @@ github-data-controller is one of the 3 github-repo-viewer project that stores th
 
 ## project-diagram
 
-![project flow diagram](https://github.com/ravilladhaneesh/github-data-viewer/blob/Add-readme-file/src/static/images/project-final-diagram.png)
+![project flow diagram](https://github.com/ravilladhaneesh/github-data-viewer/blob/master/src/static/images/project-final-diagram.png)
 
 
 ## Technologies-Used
