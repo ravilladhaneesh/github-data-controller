@@ -22,7 +22,7 @@ between data retrieval, storage, and visualization, providing an efficient and u
 
 ## project-diagram
 
-![project flow diagram](https://github.com/ravilladhaneesh/github-data-viewer/blob/Add-readme-file/src/static/images/project-final-diagram.png)
+![project flow diagram](https://github.com/ravilladhaneesh/github-data-viewer/blob/master/src/static/images/project-final-diagram.png)
 
 
 ## Technologies-Used
