@@ -1,10 +1,16 @@
 # github-data-controller
 
-github-data-controller is one of the 3 github-repo-viewer project that stores the github user's repository data to Amazon AWS through API Gateway.
+github-data-controller is one of the 3 github-repo-manager project that stores the github user's repository data to Amazon AWS through API Gateway.
 
 1. [github-data-processor](https://github.com/ravilladhaneesh/github-data-processor)
 2. github-data-controller
 3. [github-data-viewer](https://github.com/ravilladhaneesh/github-data-viewer)
+
+## github-repo-manager
+
+github-repo-manager is a system that automates the collection and storage of GitHub repository metadata in a database, with a
+responsive website for users to view and analyze the stored data. The system ensures seamless integration
+between data retrieval, storage, and visualization, providing an efficient and user-friendly interface.
 
 ## Table of Contents
 
