@@ -41,7 +41,7 @@ between data retrieval, storage, and visualization, providing an efficient and u
             3. Click on `New Environment` and provide a name of the `environment` and click on `Configure environment`.This will create a new environment and opens your newly created environment.
             4. In the `environment secrets` section click on 'Add environment secrets' and add the below variables.
                 1. Name  : AWS_PUT_DATA_ROLE
-                   value : arn:aws:iam::011528266310:role/github-put-data-role
+                   value : arn:aws:iam::680543266869:role/repo-manager-put-data-role
                 2. Name  : AWS_REGION
                    value : ap-south-1 
   
@@ -119,3 +119,4 @@ between data retrieval, storage, and visualization, providing an efficient and u
                 python github-data-processor/src/main.py  # This will run the github-data-processor project
 
 ## To-do
+
