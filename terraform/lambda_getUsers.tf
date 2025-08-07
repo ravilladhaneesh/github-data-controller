@@ -20,4 +20,6 @@ resource "aws_lambda_function" "lambda-getUsers" {
     }
   }
 
+  source_code_hash = filebase64sha256(data.archive_file.getUsers-lambda-source.output_path)
+
 }

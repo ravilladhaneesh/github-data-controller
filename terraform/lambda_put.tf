@@ -20,4 +20,6 @@ resource "aws_lambda_function" "lambda_github_put" {
     }
   }
 
+  source_code_hash = filebase64sha256(data.archive_file.lambda-put-source-zip.output_path)
+
 }
