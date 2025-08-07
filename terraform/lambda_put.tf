@@ -15,7 +15,8 @@ resource "aws_lambda_function" "lambda_github_put" {
 
   environment {
     variables = {
-      "DDB_TABLE_NAME" = ""
+      "DDB_TABLE_NAME" = "",
+      "PUT_LIMIT"      = "5"
     }
   }
 
