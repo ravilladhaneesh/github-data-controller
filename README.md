@@ -15,8 +15,8 @@ between data retrieval, storage, and visualization, providing an efficient and u
 ## Table of Contents
 
 - [project flow diagram](#project-diagram)
-- [Steps to put data to AWS](#steps-to-put-data-to-aws)
-- [Technologies used](#Technologies-Used)
+- [How to Host Your Repo In Github Repo Manager](#steps-to-host-your-repo-in-github-repo-manager))
+- [Technologies used](#technologies-used)
 - [To-do](#To-do)
 
 
@@ -25,15 +25,15 @@ between data retrieval, storage, and visualization, providing an efficient and u
 ![project flow diagram](https://github.com/ravilladhaneesh/github-data-viewer/blob/master/src/static/images/project-final-diagram.png)
 
 
-## Technologies-Used
+## Technologies Used
 
     1. Terraform
     2. Python
     3. Github CI/CD
 
-## Steps to Put Data to AWS
+## Steps to Host Your Repo In Github Repo Manager
 
-1. Create an environment in the repository and Add secrets to the environment.
+ <!-- Create an environment in the repository and Add secrets to the environment.
 
         Steps to create an environment and add secrets:
             1. Go to `settings` in the repository.
@@ -46,10 +46,12 @@ between data retrieval, storage, and visualization, providing an efficient and u
                    value : ap-south-1 
   
 
-    The AWS role provided in the above secrets has a single permission to put data to an AWS API Gateway.So the role doesn't cause any security threat. To put data to AWS your github userId/username has to be added in the role policy document to allow your github userID to assume the above provided role. Please contact me @ ravilladhaneesh@gmail.com to add your github userId to the role.
+    The AWS role provided in the above secrets has a single permission to put data to an AWS API Gateway.So the role doesn't cause any security threat. To put data to AWS your github userId/username has to be added in the role policy document to allow your github userID to assume the above provided role. Please contact me @ ravilladhaneesh@gmail.com to add your github userId to the role. -->
 
-2. Create a .github/workflows directory in your root repository to trigger a workflow on Github Actions.
-3. Add the file in this [link](https://github.com/ravilladhaneesh/workflow-test/blob/main/.github/workflows/python-test.yml) to the .github/workflow folder created in the above step to run a job that puts data to AWS
+1. Create a .github/workflows directory in your root repository.
+2. Add the file in this [link](https://github.com/ravilladhaneesh/workflow-test/blob/main/.github/workflows/publish-repo.yml) to the .github/workflows folder created in the above step and merge your code to **main** branch (Optional - Read Step 1 in [Detailed Description of the job](#detailed-description-of-the-job) to host your non **main** branch).
+
+Now you can see your repository hosted in [github repo manager](https://d9uzgnx2z0c8a.cloudfront.net/).
 
 ### Detailed Description of the job
 
@@ -60,7 +62,7 @@ between data retrieval, storage, and visualization, providing an efficient and u
         on:
         push:
             branches:
-            - main  # Run the workflow when code is pushed to the main branch
+              - main  # Run the workflow when code is pushed to the main branch
 
 2. The below code snippet has the job that runs in the workflow. In this script we have a single job 'run-python-script' that executes the [github-data-processor](https://github.com/ravilladhaneesh/github-data-processor) project to put data to AWS.The job is deployed in the 'staging' environment(Update the environment that you have created in the above [Steps to put data to AWS](#steps-to-put-data-to-aws) section).The permissions section in the code snippet are required to request the JWT token to autenticate AWS and read content of the repository.
 
