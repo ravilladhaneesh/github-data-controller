@@ -2,17 +2,14 @@ import json
 import boto3
 # import requests
 
+# Initialize DynamoDB client
+dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
+table = dynamodb.Table("github-repo-data")
 
 def lambda_handler(event, context):
 
-
     try:
-        # Initialize DynamoDB client
-        dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
-        table = dynamodb.Table("github-repo-data")
-
         users = set()
-
         # Scan the table
         response = table.scan()
 
