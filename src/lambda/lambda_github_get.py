@@ -4,6 +4,8 @@ import datetime
 from decimal import Decimal
 # import requests
 
+dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
+table = dynamodb.Table("github-repo-data")
 
 def lambda_handler(event, context):
 
@@ -17,8 +19,6 @@ def lambda_handler(event, context):
 
     try:
         username = event['username']
-        dynamodb = boto3.resource('dynamodb', region_name='ap-south-1')
-        table = dynamodb.Table("github-repo-data")
         
         response = table.query(
             KeyConditionExpression=boto3.dynamodb.conditions.Key('username').eq(username)
