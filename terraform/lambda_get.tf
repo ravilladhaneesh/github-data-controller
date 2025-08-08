@@ -19,5 +19,6 @@ resource "aws_lambda_function" "lambda-get" {
       DDB_TABLE_NAME = ""
     }
   }
+    source_code_hash = filebase64sha256(data.archive_file.get-lambda-source.output_path)
 
 }
